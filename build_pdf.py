@@ -33,8 +33,8 @@ VALID_UNTIL   = "June 17, 2026"
 PREPARED_FOR  = "SJA Property Management"
 ATTN_LINE     = "Attn: Maggie"
 PROPERTY_LINES = [
-    "Tenant unit - bedroom window",
-    "(unit address on file with SJA)",
+    "121 12th Avenue E., Unit 404",
+    "Seattle, WA 98102",
 ]
 PROJECT_TITLE = "Bedroom Window - Unlock & Remove Broken Section"
 PROJECT_DESC  = (
@@ -85,7 +85,7 @@ CONTINGENT = [
 
 LINE_DETAIL = "Tenant bedroom window - Option 1 only"
 SUBTOTAL_AMT = Decimal("700.00")
-TAX_RATE     = Decimal("0.103")  # WA combined estimated; verify against tenant unit tax code before invoicing
+TAX_RATE     = Decimal("0.1035")  # Seattle, WA combined 2026 estimate; verify before invoicing
 TAX_AMOUNT   = (SUBTOTAL_AMT * TAX_RATE).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 TOTAL        = (SUBTOTAL_AMT + TAX_AMOUNT).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
@@ -93,7 +93,7 @@ INVESTMENT_ROWS = [
     ("Unlock window & remove broken section - firm price (Option 1)",
      LINE_DETAIL, SUBTOTAL_AMT),
     ("Subtotal", "", SUBTOTAL_AMT),
-    ("Sales tax", "WA - 10.3% est.", TAX_AMOUNT),
+    ("Sales tax", "Seattle, WA - 10.35% est.", TAX_AMOUNT),
 ]
 
 TERMS = [
@@ -102,7 +102,7 @@ TERMS = [
     "All work is performed by Seven General Contractors owner-operator - no subcontractors.",
     "This estimate is valid for 30 days from the date issued.",
     "Permit fees, if required, are not included and will be billed separately.",
-    "Sales tax rate reflects Washington state combined estimate for 2026; verify against the tenant unit's exact tax code before invoicing.",
+    "Sales tax rate reflects Seattle, WA combined estimate for 2026 (10.35%); verify against the property's exact tax code before invoicing.",
     "Option 2 (interior replacement) and Option 3 (boom truck / exterior access) are NOT included in this estimate and require a separate written quote and approval before any related work begins.",
     "Seven is not responsible for pre-existing damage to the window frame, sash, or surrounding finishes. The Option 1 price assumes a normally operating window assembly that can be unlocked from the inside.",
 ]
@@ -370,5 +370,5 @@ signature_blocks(pdf)
 pdf.output(str(OUT))
 print(f"WROTE: {OUT}")
 print(f"  Subtotal:   {usd(SUBTOTAL_AMT)}")
-print(f"  Tax 10.3%:  {usd(TAX_AMOUNT)}")
+print(f"  Tax 10.35%: {usd(TAX_AMOUNT)}")
 print(f"  Total:      {usd(TOTAL)}")
